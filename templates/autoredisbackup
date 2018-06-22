@@ -2,6 +2,12 @@
 #
 # This file is managed by Chef.
 
+# Redis DB directory location e.g /var/lib/redis
+DBDIR=<%= @config[:dbdir] %>
+
+# Redis DB filename
+DBFILENAME=<%= @config[:dbfilename] %>
+
 # Backup directory location e.g /backups
 # Folders inside this one will be created (daily, weekly, etc.), and the
 # subfolders will be database names. Note that backups will be owned by

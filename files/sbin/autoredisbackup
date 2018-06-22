@@ -9,7 +9,10 @@ fi
 ##########
 
 # Redis DB directory location e.g /var/lib/redis
-REDIS_DB_DIR=${REDIS_DB_DIR:-"/var/lib/redis"}
+DBDIR=${DBDIR:-"/var/lib/redis"}
+
+# Redis DB filename
+DBFILENAME=${DBFILENAME:-"dump.rdb"}
 
 # Backup directory location e.g /var/backups
 BACKUPDIR=${BACKUPDIR:-"/var/backups/redis"}
@@ -39,7 +42,7 @@ dbdump () {
   echo Save Redis DB
   redis-cli save
   echo Rsync Redis DB
-  rsync -aPh "$REDIS_DB_DIR/dump.rdb" $1
+  rsync -aPh "$DBDIR/$DBFILENAME" $1
   chmod 600 $1
   chown root\: $1
   return 0

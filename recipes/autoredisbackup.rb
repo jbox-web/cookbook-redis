@@ -21,6 +21,9 @@ end
 
 # Configure AutoRedisBackup
 template '/etc/default/autoredisbackup' do
+  dbdir      = node[:redis][:config][:dir]
+  dbfilename = node[:redis][:config][:dbfilename]
+
   source    'autoredisbackup'
-  variables config: node[:autoredisbackup][:config]
+  variables config: node[:autoredisbackup][:config].merge(dbdir: dbdir, dbfilename: dbfilename)
 end
