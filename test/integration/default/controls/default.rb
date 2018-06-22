@@ -2,14 +2,17 @@
 
 title 'Test Redis installation'
 
+# Test Redis package
 describe package('redis-server') do
   it { should be_installed }
 end
 
+# Test Redis config
 describe file('/etc/redis/redis.conf') do
   it { should exist }
 end
 
+# Test Redis service
 describe service('redis-server') do
   it { should be_installed }
   it { should be_enabled }
