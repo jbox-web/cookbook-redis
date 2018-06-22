@@ -1,3 +1,6 @@
+# Install rsync to do backups
+package 'rsync'
+
 # Install /usr/sbin/autoredisbackup
 cookbook_file '/usr/sbin/autoredisbackup' do
   source 'sbin/autoredisbackup'

@@ -2,6 +2,11 @@
 
 title 'Test AutoRedisBackup installation'
 
+# Test rsync package
+describe package('rsync') do
+  it { should be_installed }
+end
+
 describe file('/usr/sbin/autoredisbackup') do
   it { should exist }
   its('owner') { should eq 'root' }
