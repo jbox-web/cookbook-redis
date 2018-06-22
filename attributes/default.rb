@@ -1,4 +1,4 @@
-# Redis config
+# Default Redis config
 default['redis']['config']['daemonize']                            = 'yes'
 default['redis']['config']['pidfile']                              = '/var/run/redis/redis-server.pid'
 default['redis']['config']['port']                                 = 6379
@@ -44,7 +44,7 @@ default['redis']['config']['client-output-buffer-limit']['pubsub'] = '32mb 8mb 6
 default['redis']['config']['hz']                                   = 10
 default['redis']['config']['aof-rewrite-incremental-fsync']        = 'yes'
 
-# autoredisbackup config
+# Default autoredisbackup config
 default['autoredisbackup']['config']['backup_dir']  = '/var/backups/redis'
 default['autoredisbackup']['config']['mailcontent'] = 'log'
 default['autoredisbackup']['config']['mailaddr']    = 'root'
