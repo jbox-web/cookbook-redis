@@ -1,0 +1,22 @@
+# Backup directory location e.g /backups
+# Folders inside this one will be created (daily, weekly, etc.), and the
+# subfolders will be database names. Note that backups will be owned by
+# root, with Unix rights 0600.
+BACKUP_DIR=<%= @config[:backup_dir] %>
+
+# Mail setup
+# What would you like to be mailed to you?
+# - log   : send only log file
+# - stdout : will simply output the log to the screen if run manually.
+# - quiet : Only send logs if an error occurs to the MAILADDR.
+MAILCONTENT=<%= @config[:mailcontent] %>
+
+# Email Address to send mail to? (user@domain.com)
+MAILADDR=<%= @config[:mailaddr] %>
+
+# Which day do you want weekly backups? (1 to 7 where 1 is Monday)
+DOWEEKLY=<%= @config[:doweekly] %>
+
+# Additionally keep a copy of the most recent backup in a seperate
+# directory.
+LATEST=<%= @config[:latest] %>
