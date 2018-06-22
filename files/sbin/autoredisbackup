@@ -12,7 +12,7 @@ fi
 REDIS_DB_DIR=${REDIS_DB_DIR:-"/var/lib/redis"}
 
 # Backup directory location e.g /var/backups
-BACKUP_DIR=${BACKUP_DIR:-"/var/backups/redis"}
+BACKUPDIR=${BACKUPDIR:-"/var/backups/redis"}
 
 # Mail setup
 # What would you like to be mailed to you?
@@ -59,39 +59,39 @@ M=`date +%B`                  # Month e.g January
 W=`date +%V`                  # Week Number e.g 37
 VER=1.0                       # Version Number
 
-LOGFILE=$BACKUP_DIR/redis-`date +%N`.log         # Logfile Name
-LOGERR=$BACKUP_DIR/ERRORS_REDIS-`date +%N`.log   # Logfile Name
+LOGFILE=$BACKUPDIR/redis-`date +%N`.log         # Logfile Name
+LOGERR=$BACKUPDIR/ERRORS_REDIS-`date +%N`.log   # Logfile Name
 
 # Create required directories
 # Check Backup Directory exists.
-if [ ! -e "$BACKUP_DIR" ]; then
-  mkdir -p "$BACKUP_DIR"
+if [ ! -e "$BACKUPDIR" ]; then
+  mkdir -p "$BACKUPDIR"
 fi
 
-chmod o-x ${BACKUP_DIR}
-chmod o-r ${BACKUP_DIR}
+chmod o-x ${BACKUPDIR}
+chmod o-r ${BACKUPDIR}
 
 # Check Daily Directory exists.
-if [ ! -e "$BACKUP_DIR/daily" ]; then
-  mkdir -p "$BACKUP_DIR/daily"
+if [ ! -e "$BACKUPDIR/daily" ]; then
+  mkdir -p "$BACKUPDIR/daily"
 fi
 
 # Check Weekly Directory exists.
-if [ ! -e "$BACKUP_DIR/weekly" ]; then
-  mkdir -p "$BACKUP_DIR/weekly"
+if [ ! -e "$BACKUPDIR/weekly" ]; then
+  mkdir -p "$BACKUPDIR/weekly"
 fi
 
 # Check Monthly Directory exists.
-if [ ! -e "$BACKUP_DIR/monthly" ]; then
-  mkdir -p "$BACKUP_DIR/monthly"
+if [ ! -e "$BACKUPDIR/monthly" ]; then
+  mkdir -p "$BACKUPDIR/monthly"
 fi
 
 # Check Latest Directory exists.
 if [ "$LATEST" = "yes" ]; then
-  if [ ! -e "$BACKUP_DIR/latest" ]; then
-    mkdir -p "$BACKUP_DIR/latest"
+  if [ ! -e "$BACKUPDIR/latest" ]; then
+    mkdir -p "$BACKUPDIR/latest"
   fi
-  rm -f "$BACKUP_DIR"/latest/*
+  rm -f "$BACKUPDIR"/latest/*
 fi
 
 # IO redirection for logging.
@@ -118,7 +118,7 @@ echo ======================================================================
 # Monthly Full Backup of all Databases
 if [ "$DOM" = "01" ]; then
   echo Monthly Backup of Databases
-  dbdump "$BACKUP_DIR/monthly/$DATE.$M.all-databases.rdb"
+  dbdump "$BACKUPDIR/monthly/$DATE.$M.all-databases.rdb"
   echo ----------------------------------------------------------------------
 fi
 
@@ -135,10 +135,10 @@ if [ "$DNOW" = "$DOWEEKLY" ]; then
   else
     REMW=`expr $W - 5`
   fi
-  rm -fv "$BACKUP_DIR/weekly/week.$REMW".*
+  rm -fv "$BACKUPDIR/weekly/week.$REMW".*
 
   echo
-  dbdump "$BACKUP_DIR/weekly/week.$W.$DATE.rdb"
+  dbdump "$BACKUPDIR/weekly/week.$W.$DATE.rdb"
   echo ----------------------------------------------------------------------
 
 # Daily Backup
@@ -147,10 +147,10 @@ else
   echo
 
   echo Rotating last weeks Backup...
-  rm -fv "$BACKUP_DIR"/daily/*."$DOW.rdb".*
+  rm -fv "$BACKUPDIR"/daily/*."$DOW.rdb".*
 
   echo
-  dbdump "$BACKUP_DIR/daily/$DATE.$DOW.rdb"
+  dbdump "$BACKUPDIR/daily/$DATE.$DOW.rdb"
   echo ----------------------------------------------------------------------
 fi
 
@@ -159,7 +159,7 @@ echo ======================================================================
 
 echo Total disk space used for backup storage..
 echo Size - Location
-echo `du -hs "$BACKUP_DIR"`
+echo `du -hs "$BACKUPDIR"`
 echo
 echo ======================================================================
 

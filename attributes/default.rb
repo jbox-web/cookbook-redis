@@ -45,7 +45,7 @@ default['redis']['config']['hz']                                   = 10
 default['redis']['config']['aof-rewrite-incremental-fsync']        = 'yes'
 
 # Default autoredisbackup config
-default['autoredisbackup']['config']['backup_dir']  = '/var/backups/redis'
+default['autoredisbackup']['config']['backupdir']   = '/var/backups/redis'
 default['autoredisbackup']['config']['mailcontent'] = 'log'
 default['autoredisbackup']['config']['mailaddr']    = 'root'
 default['autoredisbackup']['config']['doweekly']    = 6

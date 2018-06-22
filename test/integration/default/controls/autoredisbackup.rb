@@ -21,7 +21,7 @@ describe file('/etc/default/autoredisbackup') do
   its('owner') { should eq 'root' }
   its('group') { should eq 'root' }
   its('mode')  { should cmp '0644' }
-  its('content') { should include 'BACKUP_DIR=/var/backups/redis'  }
+  its('content') { should include 'BACKUPDIR=/var/backups/redis'  }
   its('content') { should include 'MAILCONTENT=quiet'  }
 end
 

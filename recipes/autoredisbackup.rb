@@ -11,7 +11,7 @@ cookbook_file '/etc/cron.daily/autoredisbackup' do
 end
 
 # Create Redis backup dir
-directory node[:autoredisbackup][:config][:backup_dir] do
+directory node[:autoredisbackup][:config][:backupdir] do
   recursive true
   mode   '0700'
 end
