@@ -16,6 +16,16 @@ template '/etc/redis/redis.conf' do
   variables config: node[:redis][:config]
 end
 
+# Configure logrotate
+cookbook_file '/etc/logrotate.d/redis-server' do
+  source 'logrotate/redis-server'
+end
+
+# Create Redis log archive dir
+directory '/var/log/OLD_LOGS/redis' do
+  recursive true
+end
+
 # Restart Redis when config is changed
 service 'redis' do
   subscribes :restart, 'template[/etc/redis/redis.conf]', :immediately

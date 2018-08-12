@@ -1,0 +1,9 @@
+/var/log/redis/redis-server*.log {
+  daily
+  rotate 30
+  compress
+  dateext
+  missingok
+  notifempty
+  olddir /var/log/OLD_LOGS/redis
+}
