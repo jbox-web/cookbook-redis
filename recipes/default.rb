@@ -1,13 +1,20 @@
+DISTROS = {
+  '9' => 'stretch',
+}
+
+# Get distribution name
+distro = DISTROS[node[:platform_version]]
+
 # Install Debian Backports repository
-apt_repository 'stretch-backports-binary' do
+apt_repository "#{distro}-backports-binary" do
   uri          'http://ftp.fr.debian.org/debian'
   components   ['main', 'contrib', 'non-free']
-  distribution 'stretch-backports'
+  distribution "#{distro}-backports"
 end
 
 # Install Redis
 package 'redis-server' do
-  default_release 'stretch-backports'
+  default_release "#{distro}-backports"
 end
 
 # Configure Redis
