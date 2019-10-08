@@ -3,8 +3,8 @@
 title 'Test Redis installation'
 
 DISTROS = {
-  '9.9'  => 'stretch',
-  '10.0' => 'buster',
+  '9'  => 'stretch',
+  '10' => 'buster',
 }
 
 # Test Redis package
@@ -12,7 +12,7 @@ describe package('redis-server') do
   it { should be_installed }
 end
 
-distro = DISTROS[os[:release]]
+distro = DISTROS[os[:release].to_s.split('.').first]
 
 describe file("/etc/apt/sources.list.d/#{distro}-backports-binary.list") do
   it { should exist }
