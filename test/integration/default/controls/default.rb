@@ -16,7 +16,7 @@ distro = DISTROS[os[:release].to_s.split('.').first]
 
 describe file("/etc/apt/sources.list.d/#{distro}-backports-binary.list") do
   it { should exist }
-  its('content') { should include %Q(deb      "http://ftp.fr.debian.org/debian" #{distro}-backports main contrib non-free)  }
+  its('content') { should include %Q(deb      http://ftp.fr.debian.org/debian #{distro}-backports main contrib non-free)  }
 end
 
 # Test Redis config
