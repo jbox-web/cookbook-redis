@@ -24,6 +24,9 @@ suites:
       - recipe[redis]
       - recipe[redis::autoredisbackup]
     attributes:
+      redis:
+        config:
+          dir: /data/redis
       autoredisbackup:
         config:
           mailcontent: quiet
