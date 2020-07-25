@@ -7,12 +7,19 @@ DISTROS = {
   '10' => 'buster',
 }
 
+distro = DISTROS[os[:release].to_s.split('.').first]
+
 # Test Redis package
 describe package('redis-server') do
   it { should be_installed }
-end
 
-distro = DISTROS[os[:release].to_s.split('.').first]
+  case distro
+  when 'stretch'
+    its('version') { should eq '5:5.0.3-3~bpo9+2' }
+  when 'buster'
+    its('version') { should eq '5:6.0.5-1~bpo10+1' }
+  end
+end
 
 describe file("/etc/apt/sources.list.d/#{distro}-backports-binary.list") do
   it { should exist }
