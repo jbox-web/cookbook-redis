@@ -1,0 +1,7 @@
+DEPENDENCIES
+  redis
+    path: .
+    metadata: true
+
+GRAPH
+  redis (1.0.0)
