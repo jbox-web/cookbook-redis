@@ -1,7 +1,7 @@
 DEPENDENCIES
-  redis
+  jbox-redis
     path: .
     metadata: true
 
 GRAPH
-  redis (1.0.0)
+  jbox-redis (1.0.0)
