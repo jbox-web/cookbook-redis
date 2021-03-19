@@ -17,7 +17,7 @@ describe package('redis-server') do
   when 'stretch'
     its('version') { should eq '5:5.0.3-3~bpo9+2' }
   when 'buster'
-    its('version') { should eq '5:6.0.10-4~bpo10+1' }
+    its('version') { should eq '5:6.0.11-1~bpo10+1' }
   end
 end
 
