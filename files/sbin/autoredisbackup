@@ -150,7 +150,7 @@ else
   echo
 
   echo Rotating last weeks Backup...
-  rm -fv "$BACKUPDIR"/daily/*."$DOW.rdb".*
+  rm -fv $BACKUPDIR/daily/*.$DOW.rdb
 
   echo
   dbdump "$BACKUPDIR/daily/$DATE.$DOW.rdb"
