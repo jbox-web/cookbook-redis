@@ -2,28 +2,19 @@
 
 title 'Test Redis installation'
 
-DISTROS = {
-  '9'  => 'stretch',
-  '10' => 'buster',
-}
-
-distro = DISTROS[os[:release].to_s.split('.').first]
+# Fetch Inspec inputs
+debian_release = input('debian_release')
+redis_version  = input('redis_version')
 
 # Test Redis package
 describe package('redis-server') do
   it { should be_installed }
-
-  case distro
-  when 'stretch'
-    its('version') { should eq '5:5.0.3-3~bpo9+2' }
-  when 'buster'
-    its('version') { should eq '5:6.0.11-1~bpo10+1' }
-  end
+  its('version') { should eq redis_version }
 end
 
 describe file("/etc/apt/sources.list.d/debian-backports-binary.list") do
   it { should exist }
-  its('content') { should include %Q(deb      http://ftp.fr.debian.org/debian #{distro}-backports main contrib non-free)  }
+  its('content') { should include %Q(deb      http://ftp.fr.debian.org/debian #{debian_release}-backports main contrib non-free)  }
 end
 
 # Test Redis config

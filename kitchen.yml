@@ -23,10 +23,19 @@ platforms:
     driver_config:
       image: debian:stretch-slim
       platform: debian
+    verifier:
+      inputs:
+        debian_release: stretch
+        redis_version: 5:5.0.3-3~bpo9+2
+
   - name: debian-buster
     driver_config:
       image: debian:buster-slim
       platform: debian
+    verifier:
+      inputs:
+        debian_release: buster
+        redis_version: 5:6.0.11-1~bpo10+1
 
 suites:
   - name: default
