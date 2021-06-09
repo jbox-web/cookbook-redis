@@ -21,7 +21,7 @@ describe package('redis-server') do
   end
 end
 
-describe file("/etc/apt/sources.list.d/#{distro}-backports-binary.list") do
+describe file("/etc/apt/sources.list.d/debian-backports-binary.list") do
   it { should exist }
   its('content') { should include %Q(deb      http://ftp.fr.debian.org/debian #{distro}-backports main contrib non-free)  }
 end
