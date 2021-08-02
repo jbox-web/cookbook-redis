@@ -8,7 +8,7 @@ distro = DISTROS[node[:platform_version]]
 
 # Install Debian Backports repository
 apt_repository "debian-backports-binary" do
-  uri          'http://ftp.fr.debian.org/debian'
+  uri          'http://ftp.debian.org/debian'
   components   ['main', 'contrib', 'non-free']
   distribution "#{distro}-backports"
 end
