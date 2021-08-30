@@ -1,6 +1,6 @@
 DISTROS = {
-  '9'  => 'stretch',
-  '10' => 'buster',
+  '10' => 'buster-backports',
+  '11' => 'bullseye',
 }
 
 # Get distribution name
@@ -10,12 +10,13 @@ distro = DISTROS[node[:platform_version]]
 apt_repository "debian-backports-binary" do
   uri          'http://ftp.debian.org/debian'
   components   ['main', 'contrib', 'non-free']
-  distribution "#{distro}-backports"
+  distribution distro
+  only_if { distro.include?('backports') }
 end
 
 # Install Redis
 package 'redis-server' do
-  default_release "#{distro}-backports"
+  default_release distro
 end
 
 # Configure Redis

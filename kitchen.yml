@@ -19,6 +19,15 @@ verifier:
     - progress
 
 platforms:
+  - name: debian-bullseye
+    driver_config:
+      image: debian:bullseye-slim
+      platform: debian
+    verifier:
+      inputs:
+        debian_release: bullseye
+        redis_version: 5:6.0.15-1
+
   - name: debian-buster
     driver_config:
       image: debian:buster-slim
