@@ -50,3 +50,9 @@ default['autoredisbackup']['config']['mailcontent'] = 'log'
 default['autoredisbackup']['config']['mailaddr']    = 'root'
 default['autoredisbackup']['config']['doweekly']    = 6
 default['autoredisbackup']['config']['latest']      = 'no'
+
+# Prometheus redis_exporter
+default['prometheus_exporters']['redis']['install']  = false
+default['prometheus_exporters']['redis']['version']  = '1.35.1'
+default['prometheus_exporters']['redis']['url']      = "https://github.com/oliver006/redis_exporter/releases/download/v#{node['prometheus_exporters']['redis']['version']}/redis_exporter-v#{node['prometheus_exporters']['redis']['version']}.linux-amd64.tar.gz"
+default['prometheus_exporters']['redis']['checksum'] = '0b4eaaa85d0887f5ebc7c44cd8d67485298ede19f1537a81f4f94eed2f75701b'

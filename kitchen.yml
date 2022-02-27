@@ -42,6 +42,7 @@ suites:
     run_list:
       - recipe[jbox-redis]
       - recipe[jbox-redis::autoredisbackup]
+      - recipe[jbox-redis::redis_exporter]
     attributes:
       redis:
         config:
@@ -49,3 +50,6 @@ suites:
       autoredisbackup:
         config:
           mailcontent: quiet
+      prometheus_exporters:
+        redis:
+          install: true
